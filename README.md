@@ -2,126 +2,113 @@
 
 A comprehensive Claude Code skill that provides expert guidance for managing Confluence documentation, including Wiki Markup mastery, Markdown conversion, Mermaid diagram integration, and seamless interaction with the Atlassian MCP server.
 
-## Installation
+## Installing with Skilz (Universal Installer)
 
-### Universal Installer (Recommended)
+The recommended way to install this skill across different AI coding agents is using the **skilz** universal installer.
 
-Use [skilz](https://github.com/SpillwaveSolutions/skilz) - the universal installer for Agent Skill Standard:
-
-```bash
-# Install skilz first (one-time)
-pipx install skilz
-# OR: pip install skilz
-
-# Then install this skill
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill
-```
-
-### Agent-Specific Installation
-
-<details>
-<summary><strong>Claude Code</strong></summary>
+### Install Skilz
 
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent claude
-
-# Manual installation
-mkdir -p ~/.claude/skills && cd ~/.claude/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+pip install skilz
 ```
-</details>
 
-<details>
-<summary><strong>OpenCode</strong></summary>
+This skill supports [Agent Skill Standard](https://agentskills.io/) which means it supports 14 plus coding agents including Claude Code, OpenAI Codex, Cursor and Gemini.
+
+
+### Git URL Options
+
+You can use either `-g` or `--git` with HTTPS or SSH URLs:
 
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent opencode
+# HTTPS URL
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill
 
-# Manual installation
-mkdir -p ~/.opencode/skills && cd ~/.opencode/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+# SSH URL
+skilz install --git git@github.com:SpillwaveSolutions/mastering-confluence-agent-skill.git
 ```
-</details>
 
-<details>
-<summary><strong>Gemini CLI</strong></summary>
+### Claude Code
 
+Install to user home (available in all projects):
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent gemini
-
-# Manual installation
-mkdir -p ~/.gemini/skills && cd ~/.gemini/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill
 ```
-</details>
 
-<details>
-<summary><strong>OpenAI Codex</strong></summary>
-
+Install to current project only:
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent codex
-
-# Manual installation
-mkdir -p ~/.codex/skills && cd ~/.codex/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill --project
 ```
-</details>
 
-<details>
-<summary><strong>Amp Code</strong></summary>
+### OpenCode
 
+Install for [OpenCode](https://opencode.ai):
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent amp
-
-# Manual installation
-mkdir -p ~/.amp/skills && cd ~/.amp/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill --agent opencode
 ```
-</details>
 
-<details>
-<summary><strong>Cursor AI</strong></summary>
-
+Project-level install:
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent cursor
-
-# Manual installation
-mkdir -p ~/.cursor/skills && cd ~/.cursor/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill --project --agent opencode
 ```
-</details>
 
-<details>
-<summary><strong>Windsurf</strong></summary>
+### Gemini
 
+Project-level install for Gemini:
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent windsurf
-
-# Manual installation
-mkdir -p ~/.windsurf/skills && cd ~/.windsurf/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill --agent gemini
 ```
-</details>
 
-<details>
-<summary><strong>Aider</strong></summary>
+### OpenAI Codex
 
+Install for OpenAI Codex:
 ```bash
-# Using skilz
-skilz install SpillwaveSolutions/mastering-confluence-agent-skill --agent aider
-
-# Manual installation
-mkdir -p ~/.aider/skills && cd ~/.aider/skills
-git clone https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill.git mastering-confluence
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill --agent codex
 ```
-</details>
+
+Project-level install:
+```bash
+skilz install -g https://github.com/SpillwaveSolutions/mastering-confluence-agent-skill --project --agent codex
+```
+
+
+### Install from Skillzwave Marketplace
+```
+# Claude to user home dir ~/.claude/skills
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence
+
+# Claude skill in project folder ./claude/skills
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence --project
+
+# OpenCode install to user home dir ~/.config/opencode/skills
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence --agent opencode
+
+# OpenCode project level
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence --agent opencode --project
+
+# OpenAI Codex install to user home dir ~/.codex/skills
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence
+
+# OpenAI Codex project level ./.codex/skills
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence --agent opencode --project
+
+
+# Gemini CLI (project level) -- only works with project level
+skilz install SpillwaveSolutions_mastering-confluence-agent-skill/mastering-confluence --agent gemini
+
+```
+
+See this site [skill Listing](https://skillzwave.ai/skill/SpillwaveSolutions__mastering-confluence-agent-skill__mastering-confluence__SKILL/) to see how to install this exact skill to 14+ different coding agents.
+
+
+### Other Supported Agents
+
+Skilz supports 14+ coding agents including Claude Code, OpenAI Codex, OpenCode, Cursor, Gemini CLI, GitHub Copilot CLI, Windsurf, Qwen Code, Aidr, and more.
+
+For the full list of supported platforms, visit [SkillzWave.ai/platforms](https://skillzwave.ai/platforms/) or see the [skilz-cli GitHub repository](https://github.com/SpillwaveSolutions/skilz-cli)
+
+
+<a href="https://skillzwave.ai/">Largest Agentic Marketplace for AI Agent Skills</a> and
+<a href="https://spillwave.com/">SpillWave: Leaders in AI Agent Development.</a>
 
 ## What is a Skill?
 
