@@ -432,111 +432,37 @@ Latest metrics are available in [metrics.csv](data/metrics.csv).
 
 ## CI/CD Integration
 
-### GitHub Actions
+### GitHub Actions Example
 
 ```yaml
 name: Sync Documentation to Confluence
 
 on:
   push:
-    paths:
-      - 'docs/**/*.md'
-    branches:
-      - main
+    paths: ['docs/**/*.md']
+    branches: [main]
 
 jobs:
-  sync-confluence:
+  sync:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Install mark
-        run: |
-          curl -LO https://github.com/kovetskiy/mark/releases/latest/download/mark
-          chmod +x mark
-          sudo mv mark /usr/local/bin/
-
-      - name: Sync to Confluence
+      - uses: actions/checkout@v3
+      - name: Install and sync
         env:
           CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}
           CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_API_TOKEN }}
           CONFLUENCE_BASE_URL: ${{ secrets.CONFLUENCE_BASE_URL }}
         run: |
+          curl -sLO https://github.com/kovetskiy/mark/releases/latest/download/mark
+          chmod +x mark && sudo mv mark /usr/local/bin/
           for file in docs/**/*.md; do
-            echo "Syncing $file..."
-            mark -u "$CONFLUENCE_USERNAME" \
-                 -p "$CONFLUENCE_PASSWORD" \
-                 --base-url "$CONFLUENCE_BASE_URL" \
-                 -f "$file" \
-                 --version-message "Updated from commit ${{ github.sha }}"
+            mark -u "$CONFLUENCE_USERNAME" -p "$CONFLUENCE_PASSWORD" \
+                 --base-url "$CONFLUENCE_BASE_URL" -f "$file" \
+                 --version-message "Commit ${{ github.sha }}"
           done
-
-      - name: Summary
-        run: echo "✅ Documentation synced to Confluence"
 ```
 
-### GitLab CI
-
-```yaml
-sync-to-confluence:
-  stage: deploy
-  only:
-    - main
-  changes:
-    - docs/**/*.md
-  script:
-    - curl -LO https://github.com/kovetskiy/mark/releases/latest/download/mark
-    - chmod +x mark
-    - mv mark /usr/local/bin/
-    - |
-      for file in docs/**/*.md; do
-        echo "Syncing $file..."
-        mark -u "$CONFLUENCE_USERNAME" \
-             -p "$CONFLUENCE_PASSWORD" \
-             --base-url "$CONFLUENCE_BASE_URL" \
-             -f "$file" \
-             --version-message "$CI_COMMIT_MESSAGE"
-      done
-  variables:
-    CONFLUENCE_USERNAME: ${CONFLUENCE_USERNAME}
-    CONFLUENCE_PASSWORD: ${CONFLUENCE_API_TOKEN}
-    CONFLUENCE_BASE_URL: ${CONFLUENCE_BASE_URL}
-```
-
-### Jenkins Pipeline
-
-```groovy
-pipeline {
-    agent any
-
-    stages {
-        stage('Sync to Confluence') {
-            when {
-                changeset "docs/**/*.md"
-                branch 'main'
-            }
-            steps {
-                sh '''
-                    curl -LO https://github.com/kovetskiy/mark/releases/latest/download/mark
-                    chmod +x mark
-                    sudo mv mark /usr/local/bin/
-
-                    for file in docs/**/*.md; do
-                        echo "Syncing $file..."
-                        mark -u "${CONFLUENCE_USERNAME}" \
-                             -p "${CONFLUENCE_PASSWORD}" \
-                             --base-url "${CONFLUENCE_BASE_URL}" \
-                             -f "$file" \
-                             --version-message "${GIT_COMMIT_MSG}"
-                    done
-                '''
-            }
-        }
-    }
-}
-```
+**Other CI/CD platforms:** See [mark GitHub repository](https://github.com/kovetskiy/mark#cicd) for GitLab CI, Jenkins, Azure DevOps, and CircleCI examples.
 
 ## Best Practices
 

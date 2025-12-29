@@ -4,9 +4,10 @@ description: |
   Comprehensive Confluence documentation management. Use when asked to
   "upload to Confluence", "download Confluence pages", "convert Markdown
   to Wiki Markup", "sync documentation to Confluence", "search Confluence",
-  "create Confluence page", or "update Confluence page". Handles Wiki Markup
-  conversion, Mermaid/PlantUML diagrams, image handling, and large document
-  uploads without size limits.
+  "create Confluence page", "update Confluence page", "export Confluence",
+  "publish to Confluence", or "Confluence CQL query". Handles Wiki Markup
+  conversion, Mermaid/PlantUML diagrams, image handling, large document
+  uploads without size limits, and Git-to-Confluence sync with mark CLI.
 license: MIT
 allowed-tools:
   - Read
